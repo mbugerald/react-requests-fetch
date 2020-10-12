@@ -1,11 +1,11 @@
-# react-requestFetchHook
-
-<img height="100" width="100" src="https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png"/>
-<img height="100" width="100" src="https://www.freecodecamp.org/news/content/images/2020/08/wall-2.jpeg"/><hr/>
-The given dependency, <b>[reactrequestfetch]</b> is a  <a href="https://reactjs.org/">ReactJS</a> target library for handling http fetch requests considering bia-directional stateless and stateful data extraction.
+# React Request Fetch Hook
+The given dependency, <b>[react-requests-fetch]</b> is a  <a href="https://reactjs.org/">ReactJS</a> target library for handling http fetch requests considering bia-directional stateless and stateful data extraction.
 The same logic and parameters used when performing http requests using the fetch api are kept, with the difference
 in flexibility as to how data is retrieved. Data can be retrieved from any given source (<b>api: precisely</b>), either by initializing this hook when the component 
 renders or is to render with statics variables, or dynamic variables within the source code, the same way as the <a href="https://reactjs.org/docs/hooks-state.html">react's use state hook</a> is expected to be called. 
+
+<img alt="react" height="100" width="100" src="https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png"/>
+<img alt="fetch" height="100" width="100" src="https://www.freecodecamp.org/news/content/images/2020/08/wall-2.jpeg"/><hr/>
 
 <h2>Installation</h2>
 <p><code>npm i reactrequestfetch</code></p>
@@ -25,7 +25,7 @@ handles response data and the second variable handles request data.
 <p><b>Statically</b></p>
 
 ```
-import {useRequestFetch} from "./fetchRequestsHook";
+import useRequestFetch from "react-requests-fetch";
    
 const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2/all");
 ```
@@ -33,7 +33,7 @@ const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2
 <p><b>Dynamically</b></p>
 
 ```
-import {useRequestFetch} from "./fetchRequestsHook";
+import useRequestFetch from "react-requests-fetch";
    
 <button onClick={() => {
     setRequest({
