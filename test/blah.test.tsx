@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import "@testing-library/jest-dom/extended-expect";
+import "@testing-library/jest-dom/extend-expect";
 import useRequestFetch from "../src";
+import {render, waitFor} from "@testing-library/react";
 
 const App = () => {
 
@@ -13,11 +14,18 @@ const App = () => {
     setResp(response)
   }, [])
 
-  return resp
+  if (resp && Object.keys(resp).length > 0) {
+    return <div>yes</div>
+  }
+
+  return null
 
 }
 
 describe('it', () => {
-  it('renders without crashing', () => {
+  it('pulls data', async () => {
+    const { getByText } = render(<App/>);
+    const yesNode = await waitFor(() => getByText("yes"));
+    expect(yesNode).toBeInTheDocument();
   });
 });
