@@ -26,19 +26,11 @@ handles response data and the second variable handles request data.
 
 ```
 import useRequestFetch from "react-requests-fetch";
-
-// With URI:: Expected payload as server response.
    
-const {requestResponse, setRequest} = useRequestFetch({
-   uri: "https://restcountries.eu/rest/v2/all"
-});
+const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2/all");
 
-// Without URI:: Expected default payload as response.
-
-const {requestResponse, setRequest} = useRequestFetch();
-
-<p>{requestResponse.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
+<p>{response.loading && "Fetching..."}</p>
+<pre>{JSON.stringify(response, null, 2)}</pre>
 ```
 
 <p><b>Dynamic Implementation</b></p>
@@ -46,9 +38,7 @@ const {requestResponse, setRequest} = useRequestFetch();
 ```
 import useRequestFetch from "react-requests-fetch";
 
-const {requestResponse, setRequest} = useRequestFetch({
-   uri: "https://restcountries.eu/rest/v2/all"
-});
+const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2/all");
    
 <button onClick={() => {
     setRequest({
@@ -56,8 +46,8 @@ const {requestResponse, setRequest} = useRequestFetch({
     })
 }}>Fetch Data</button>
 
-<p>{requestResponse.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
+<p>{response.loading && "Fetching..."}</p>
+<pre>{JSON.stringify(response, null, 2)}</pre>
 ```
 
 <p><b>For version 0.2.0 and above.</b></p>
@@ -72,20 +62,30 @@ The expectedResponseType targets the primitive <b>response.json()</b> or <b>resp
 <p><b>Static Implementation</b></p>
  
 `````
-setRequest({
-    uri: "https://restcountries.eu/rest/v2/all",
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-        "accepts": "application/json"
-    },
-})
+import useRequestFetch from "react-requests-fetch";
+
+// With URI:: Expected payload as server response.
+   
+const {requestResponse, setRequest} = useRequestFetch({
+   uri: "https://restcountries.eu/rest/v2/all"
+});
+
+// Without URI:: Expected default payload as response.
+
+const {requestResponse, setRequest} = useRequestFetch();
+
+<p>{requestResponse.loading && "Fetching..."}</p>
+<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
 `````
 
 <p><b>Dynamic Implementation</b></p> 
 
 ```
 import useRequestFetch from "react-requests-fetch";
+
+const {requestResponse, setRequest} = useRequestFetch({
+   uri: "https://restcountries.eu/rest/v2/all"
+});
    
 <button onClick={() => {
     setRequest({
@@ -93,7 +93,8 @@ import useRequestFetch from "react-requests-fetch";
     })
 }}>Fetch Data</button>
 
-<p>{response.loading && "Fetching..."}</p>
+<p>{requestResponse.loading && "Fetching..."}</p>
+<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
 ```
 
 <p><b>Expected payload</b></p>
