@@ -156,8 +156,9 @@ import useRequestFetch from "react-requests-fetch";
     </tbody>
 </table>
 
+<p><b>NOTE:</b></p>
 <p>
-<b>NOTE:</b> The above table is a replica content from https://developer.mozilla.org/en-US/docs/Web/API/Request/Request.
+The above table is a replica content from https://developer.mozilla.org/en-US/docs/Web/API/Request/Request.
 The Official site for fetch api in case any further information, please consult the site and get accurate variables required where needed.
 </p>
 
