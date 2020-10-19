@@ -8,22 +8,17 @@ import fetchMock from 'fetch-mock';
 const App = () => {
   const { requestResponse, setRequest } = useRequestFetch();
   const [resp, setResp] = useState<any>(null);
-
   useEffect(() => {
     setRequest({
       uri: 'https://restcountries.eu/rest/v2/all',
     });
     setResp(requestResponse);
-  }, [])
-
+  }, []);
   if (resp && Object.keys(resp).length > 0) {
-    return <div>yes</div>
+    return <div>yes</div>;
   }
-
-  return null
-
+  return null;
 }
-
 
 describe('it', () => {
   afterEach(() => {
