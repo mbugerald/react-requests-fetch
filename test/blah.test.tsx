@@ -1,18 +1,17 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import "@testing-library/jest-dom/extend-expect";
-import useRequestFetch from "../src";
-import {render, waitFor} from "@testing-library/react";
-import fetchMock from "fetch-mock";
+import '@testing-library/jest-dom/extend-expect';
+import useRequestFetch from '../src';
+import {render, waitFor} from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 
 const App = () => {
-
-  const {requestResponse, setRequest} = useRequestFetch()
-  const [resp, setResp] = useState<any>(null)
+  const {requestResponse, setRequest} = useRequestFetch();
+  const [resp, setResp] = useState<any>(null);
 
   useEffect(() => {
     setRequest({
-      uri: "https://restcountries.eu/rest/v2/all"
+      uri: 'https://restcountries.eu/rest/v2/all',
     })
     setResp(requestResponse)
   }, [])
