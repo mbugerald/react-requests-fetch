@@ -17,9 +17,9 @@ Keep in mind this hook is two dimensional meaning it can
 compute automatically, with initial values or it can be computed dynamically with state values. Priority is given
 to the dynamic url therefore be aware when initiating the urls. Just like the local react hooks, the react-requests-fetch hook
 is called with two variable, the first being the response variable, and the second being the request variable. The first variable,
-handles response data and the second variable handles request data. Additionally, parameter <b>expectedResponseType</b>, has been include determining the type of response to be expected,
+handles response data and the second variable handles request data. Additionally, the parameter <b>expectedResponseType</b>, has been included to determine the type of response to be expected.
 from response payload. For text use <b>text</b>, for json use <b>json</b>. if left unassigned the default result expected shall be json format.
-The expectedResponseType targets the primitive <b>response.json()</b> or <b>response.text()</b>.
+The expectedResponseType targets the primitives <b>response.json()</b> or <b>response.text()</b>.
 </p>
 
 <h5>Example: Implementation</h5>
