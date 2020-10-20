@@ -22,28 +22,7 @@ from response payload. For text use <b>text</b>, for json use <b>json</b>. if le
 The expectedResponseType targets the primitive <b>response.json()</b> or <b>response.text()</b>.
 </p>
 
-<h5>Example: Usage</h5>
-
-<p><b>Static Implementation</b></p>
- 
-`````
-import useRequestFetch from "react-requests-fetch";
-
-// With URI:: Expected payload as server response.
-   
-const [response, setRequest] = useRequestFetch({
-   uri: "https://restcountries.eu/rest/v2/all"
-});
-
-// Without URI:: Expected default payload as response.
-
-const [requestResponse, setRequest] = useRequestFetch();
-
-<p>{requestResponse.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
-`````
-
-<p><b>Dynamic Implementation</b></p> 
+<h5>Example: Implementation</h5>
 
 ```
 import useRequestFetch from "react-requests-fetch";
@@ -51,15 +30,15 @@ import useRequestFetch from "react-requests-fetch";
 const [response, setRequest] = useRequestFetch({
    uri: "https://restcountries.eu/rest/v2/all"
 });
-   
+
 <button onClick={() => {
     setRequest({
-        uri: "https://restcountries.eu/rest/v2/all"
+        uri: "https://restcountries.eu/rest/v2/alpha/col"
     })
 }}>Fetch Data</button>
 
-<p>{requestResponse.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(requestResponse, null, 2)}</pre>
+<p>{response.loading && "Fetching..."}</p>
+<pre>{JSON.stringify(response, null, 2)}</pre>
 ```
 
 <p><b>Expected payload</b></p>
