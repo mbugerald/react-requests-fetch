@@ -17,47 +17,12 @@ Keep in mind this hook is two dimensional meaning it can
 compute automatically, with initial values or it can be computed dynamically with state values. Priority is given
 to the dynamic url therefore be aware when initiating the urls. Just like the local react hooks, the react-requests-fetch hook
 is called with two variable, the first being the response variable, and the second being the request variable. The first variable,
-handles response data and the second variable handles request data. 
-</p>
-
-
-<h5>Example: Usage</h5>
-<p><b>Static Implementation</b></p>
-
-```
-import useRequestFetch from "react-requests-fetch";
-   
-const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2/all");
-
-<p>{response.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(response, null, 2)}</pre>
-```
-
-<p><b>Dynamic Implementation</b></p>
-
-```
-import useRequestFetch from "react-requests-fetch";
-
-const [response, setRequest] = useRequestFetch("https://restcountries.eu/rest/v2/all");
-   
-<button onClick={() => {
-    setRequest({
-        uri: "https://restcountries.eu/rest/v2/all"
-    })
-}}>Fetch Data</button>
-
-<p>{response.loading && "Fetching..."}</p>
-<pre>{JSON.stringify(response, null, 2)}</pre>
-```
-
-<p><b>For version 0.2.0 and above.</b></p>
-<p>
-As from v0.2.0, Type-Safe is implemented on the hook, with strict validation to parameters provided, in the request body.
-None of the parameters a obligatory but take not if not supplied will the response will result to the default payload.
-Additionally, parameter <b>expectedResponseType</b>, has been include determining the type of response to be expected,
+handles response data and the second variable handles request data. Additionally, parameter <b>expectedResponseType</b>, has been include determining the type of response to be expected,
 from response payload. For text use <b>text</b>, for json use <b>json</b>. if left unassigned the default result expected shall be json format.
 The expectedResponseType targets the primitive <b>response.json()</b> or <b>response.text()</b>.
 </p>
+
+<h5>Example: Usage</h5>
 
 <p><b>Static Implementation</b></p>
  
@@ -157,11 +122,11 @@ const {requestResponse, setRequest} = useRequestFetch({
     </tbody>
 </table>
 
+<br/>
 <p><b>NOTE</b></p>
 <p>
 The above table is a replica content from https://developer.mozilla.org/en-US/docs/Web/API/Request/Request.
 The Official site for fetch api in case any further information, please consult the site and get accurate variables required where needed.
 </p>
 
-<p><b>ADDITIONALLY</b></p>
-<p>Any request or contributions to the given hook would be appreciated. <a href="https://github.com/mbugerald/react-requests-fetch">https://github.com/mbugerald/react-requests-fetch</a> </p>
+<p><b>Github</b>&nbsp;<a href="https://github.com/mbugerald/react-requests-fetch">https://github.com/mbugerald/react-requests-fetch</a> </p>

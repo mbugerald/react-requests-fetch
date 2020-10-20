@@ -9,7 +9,7 @@
  *      compute automatically, with initial values or it can be computed dynamically with state values. Priority is given
  *      to the dynamic url therefore be aware when initiating the urls.
  * *****/
-import React, {useEffect, useReducer, useState} from "react";
+import {useEffect, useReducer, useState} from "react";
 // Handle request base on provided parameters from the consumer.
 const request = async (
     url: string,
@@ -40,83 +40,153 @@ const request = async (
   // Conjunction of different possibilities.
   switch (method) {
     case "POST" || "post":
-      const req = await fetch(url, {
-        headers: reqHeaders,
-        method: "post",
-        body: JSON.stringify(body),
-        cache: cache ? cache: "default",
-        mode: mode? mode: "cors",
-        integrity: integrity,
-        credentials: credentials,
-        referrer: referrer,
-        redirect: redirect,
-        referrerPolicy: referrerPolicy,
-        keepalive: keepAlive
-      });
-      return requestStatus(req.status, await req, expectedResponseType)
+      try {
+        const req = await fetch(url, {
+          headers : reqHeaders,
+          method : "post",
+          body : JSON.stringify(body),
+          cache : cache ? cache : "default",
+          mode : mode ? mode : "cors",
+          integrity : integrity,
+          credentials : credentials,
+          referrer : referrer,
+          redirect : redirect,
+          referrerPolicy : referrerPolicy,
+          keepalive : keepAlive
+        });
+        return requestStatus(req.status, await req, expectedResponseType)
+      } catch (e) {
+        if (e.message === "Timeout") {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message);
+          })
+          return requestStatus(408, promiseA)
+        } else {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message + " check your entries and url, and ensure you are calling an active server or url. Console log for more precise details.");
+          })
+          return requestStatus(500, promiseA)
+        }
+      }
     case "PUT" || "put":
-      const reqPut = await fetch(url, {
-        headers: reqHeaders,
-        method: "put",
-        body: JSON.stringify(body),
-        cache: cache ? cache: "default",
-        mode: mode? mode: "cors",
-        integrity: integrity,
-        credentials: credentials,
-        referrer: referrer,
-        redirect: redirect,
-        referrerPolicy: referrerPolicy,
-        keepalive: keepAlive
-      });
-      return requestStatus(reqPut.status, await reqPut, expectedResponseType)
+      try {
+        const reqPut = await fetch(url, {
+          headers : reqHeaders,
+          method : "put",
+          body : JSON.stringify(body),
+          cache : cache ? cache : "default",
+          mode : mode ? mode : "cors",
+          integrity : integrity,
+          credentials : credentials,
+          referrer : referrer,
+          redirect : redirect,
+          referrerPolicy : referrerPolicy,
+          keepalive : keepAlive
+        });
+        return requestStatus(reqPut.status, await reqPut, expectedResponseType)
+      } catch (e) {
+        if (e.message === "Timeout") {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message);
+          })
+          return requestStatus(408, promiseA)
+        } else {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message + " check your entries and url, and ensure you are calling an active server or url. Console log for more precise details.");
+          })
+          return requestStatus(500, promiseA)
+        }
+      }
     case "DELETE" || "delete":
-      const reqDelete = await fetch(url, {
-        headers: reqHeaders,
-        method: "post",
-        body: JSON.stringify(body),
-        cache: cache ? cache: "default",
-        mode: mode? mode: "cors",
-        integrity: integrity,
-        credentials: credentials,
-        referrer: referrer,
-        redirect: redirect,
-        referrerPolicy: referrerPolicy,
-        keepalive: keepAlive
-      });
-      return requestStatus(reqDelete.status, await reqDelete, expectedResponseType)
+      try {
+        const reqDelete = await fetch(url, {
+          headers : reqHeaders,
+          method : "post",
+          body : JSON.stringify(body),
+          cache : cache ? cache : "default",
+          mode : mode ? mode : "cors",
+          integrity : integrity,
+          credentials : credentials,
+          referrer : referrer,
+          redirect : redirect,
+          referrerPolicy : referrerPolicy,
+          keepalive : keepAlive
+        });
+        return requestStatus(reqDelete.status, await reqDelete, expectedResponseType)
+      } catch (e) {
+        if (e.message === "Timeout") {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message);
+          })
+          return requestStatus(408, promiseA)
+        } else {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message + " check your entries and url, and ensure you are calling an active server or url. Console log for more precise details.");
+          })
+          return requestStatus(500, promiseA)
+        }
+      }
     case "PATCH" || "patch":
-      const reqPatch = await fetch(url, {
-        headers: reqHeaders,
-        method: "patch",
-        body: JSON.stringify(body),
-        cache: cache ? cache: "default",
-        mode: mode? mode: "cors",
-        integrity: integrity,
-        credentials: credentials,
-        referrer: referrer,
-        redirect: redirect,
-        referrerPolicy: referrerPolicy,
-        keepalive: keepAlive
-      });
-      return requestStatus(reqPatch.status, await reqPatch, expectedResponseType)
+      try {
+        const reqPatch = await fetch(url, {
+          headers : reqHeaders,
+          method : "patch",
+          body : JSON.stringify(body),
+          cache : cache ? cache : "default",
+          mode : mode ? mode : "cors",
+          integrity : integrity,
+          credentials : credentials,
+          referrer : referrer,
+          redirect : redirect,
+          referrerPolicy : referrerPolicy,
+          keepalive : keepAlive
+        });
+        return requestStatus(reqPatch.status, await reqPatch, expectedResponseType)
+      } catch (e) {
+        if (e.message === "Timeout") {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message);
+          })
+          return requestStatus(408, promiseA)
+        } else {
+          const promiseA = new Promise( (resolutionFunc) => {
+            resolutionFunc(e.message + " check your entries and url, and ensure you are calling an active server or url. Console log for more precise details.");
+          })
+          return requestStatus(500, promiseA)
+        }
+      }
     default:
       if (body) {
         const message = {"message": "GET requests cannot include the parameter body in its requests."}
         return [412, message]
       } else {
-        const resp = await fetch(url, {
-          method: "GET",
-          headers: reqHeaders,
-          cache: cache ? cache: "default",
-          mode: mode? mode: "cors",
-          integrity: integrity,
-          credentials: credentials,
-          referrer: referrer,
-          redirect: redirect,
-          referrerPolicy: referrerPolicy,
-          keepalive: keepAlive
-        });
-        return requestStatus(resp.status, resp, expectedResponseType)
+        try {
+          const resp = await fetch(url, {
+            method: "GET",
+            headers: reqHeaders,
+            cache: cache ? cache: "default",
+            mode: mode? mode: "cors",
+            integrity: integrity,
+            credentials: credentials,
+            referrer: referrer,
+            redirect: redirect,
+            referrerPolicy: referrerPolicy,
+            keepalive: keepAlive
+          });
+          return requestStatus(resp.status, resp, expectedResponseType)
+        } catch (e) {
+          if (e.message === "Timeout") {
+            const promiseA = new Promise( (resolutionFunc) => {
+              resolutionFunc(e.message);
+            })
+            return requestStatus(408, promiseA)
+          } else {
+            const promiseA = new Promise( (resolutionFunc) => {
+              resolutionFunc(e.message + " check your entries and url, and ensure you are calling an active server or url. Console log for more precise details.");
+            })
+            return requestStatus(500, promiseA)
+          }
+        }
       }
   }
 }
@@ -126,18 +196,22 @@ const requestStatus = async (
     response: any |undefined,
     responseType?: ExpectedResponseType
 ) => {
-  if(status >= 200 && status < 300) {
-    if (status === 204) {return [status, null]}
+  try {
+    if(status >= 200 && status < 300) {
+      if (status === 204) {return [status, null]}
+      switch (responseType){
+        case "json":return [status,await response.json()]
+        case "text": return [status,await response.text()]
+        default: return [status,await response.json()]
+      }
+    }
     switch (responseType){
       case "json":return [status,await response.json()]
       case "text": return [status,await response.text()]
       default: return [status,await response.json()]
     }
-  }
-  switch (responseType){
-    case "json":return [status,await response.json()]
-    case "text": return [status,await response.text()]
-    default: return [status,await response.json()]
+  } catch (e) {
+    return [500, await response]
   }
 }
 // Header types
@@ -200,12 +274,10 @@ const responseReducer = (state: ResponseParams, action: ResponseParams) => {
   }
 }
 // Request State interface ensure type-safe states in the hook.
-interface RequestState {
-  requestResponse: ResponseParams;
-  setRequest: React.Dispatch<React.SetStateAction<RequestParams>>;
-}
 // HTTP hook handling http requests.
-const useRequestFetch = (overrides?: Partial<RequestParams>): RequestState => {
+const useRequestFetch = (overrides?: Partial<RequestParams>):
+    (any | ((value: (((prevState: RequestParams) => RequestParams) | RequestParams)) => void))[] =>
+{
   const defaultRequest:ResponseParams = {};
   const [params, setRequest] = useState<RequestParams>({
     ...defaultRequest,
@@ -217,7 +289,6 @@ const useRequestFetch = (overrides?: Partial<RequestParams>): RequestState => {
         // This can be useful, if the application is expected to load data from
         // the backend on DOM first load. for example account information or credentials
         if (params.uri) {
-          dispatch({type: "loading", loading: true})
           try {
             request(
                 params.uri,
@@ -257,6 +328,6 @@ const useRequestFetch = (overrides?: Partial<RequestParams>): RequestState => {
         params.method, params.mode, params.params,
         params.redirect, params.referral,
         params.referralPolicy, params.uri])
-  return {requestResponse, setRequest}
+  return [requestResponse, setRequest]
 }
 export default useRequestFetch;

@@ -6,7 +6,7 @@ import { render, waitFor } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 
 const App = () => {
-  const { requestResponse, setRequest } = useRequestFetch();
+  const [requestResponse, setRequest] = useRequestFetch();
   const [resp, setResp] = useState<any>(null);
   useEffect(() => {
     setRequest({
