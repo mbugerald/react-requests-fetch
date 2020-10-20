@@ -31,13 +31,13 @@ import useRequestFetch from "react-requests-fetch";
 
 // With URI:: Expected payload as server response.
    
-const {requestResponse, setRequest} = useRequestFetch({
+const [response, setRequest] = useRequestFetch({
    uri: "https://restcountries.eu/rest/v2/all"
 });
 
 // Without URI:: Expected default payload as response.
 
-const {requestResponse, setRequest} = useRequestFetch();
+const [requestResponse, setRequest] = useRequestFetch();
 
 <p>{requestResponse.loading && "Fetching..."}</p>
 <pre>{JSON.stringify(requestResponse, null, 2)}</pre>
@@ -48,7 +48,7 @@ const {requestResponse, setRequest} = useRequestFetch();
 ```
 import useRequestFetch from "react-requests-fetch";
 
-const {requestResponse, setRequest} = useRequestFetch({
+const [response, setRequest] = useRequestFetch({
    uri: "https://restcountries.eu/rest/v2/all"
 });
    
